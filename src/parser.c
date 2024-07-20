@@ -8,7 +8,7 @@
 
 int check_number(char* str) 
 {
-    for (int i = 0; i < strlen(str); i++) {
+    for (int i = 0; i < (int)strlen(str); i++) {
 	if (strpbrk(str + i, "0123456789") == NULL)
 	    return 0;
     }
