@@ -113,7 +113,7 @@ Value* primitive_eq(List* arguments)
     Node* current_argument = arguments->first;
     for (int i = 0; i < arguments->length - 1; i++) {
 	if (!compare_values(current_argument->value, current_argument->next->value))
-	    return alloc_value(TYPE_SYMBOL, "NIL");
+	    return alloc_value(TYPE_SYMBOL, (void*)"NIL");
 	current_argument = current_argument->next;
     }
     return alloc_value(TYPE_SYMBOL, "T");
