@@ -236,5 +236,5 @@ Value* primitive_type(List* arguments)
 {
     Value* val = arguments->first->value;
 
-    return alloc_value(TYPE_SYMBOL, type_names[val->type]);
+    return alloc_value(TYPE_SYMBOL, (void*)type_names[val->type]);
 }
