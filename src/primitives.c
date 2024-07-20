@@ -139,12 +139,12 @@ Value* primitive_greater(List* arguments)
 
 Value* primitive_lesseq(List* arguments)
 {
-  return (Value*)((intptr_t)primitive_less(arguments) || (intptr_t)primitive_eq(arguments));
+  return (Value*)(intptr_t)((intptr_t)primitive_less(arguments) || (intptr_t)primitive_eq(arguments));
 }
 
 Value* primitive_greatereq(List* arguments)
 {
-   return (Value*)((intptr_t)primitive_greater(arguments) || (intptr_t)primitive_eq(arguments)); 
+  return (Value*)(intptr_t)((intptr_t)primitive_greater(arguments) || (intptr_t)primitive_eq(arguments));
 }
 
 Value* primitive_list(List* arguments)
