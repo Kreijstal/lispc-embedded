@@ -23,7 +23,7 @@ int check_symbol(char* str)
 int strcount(char* str, char c)
 {
     int count = 0;
-    for (int i = 0; i < strlen(str); i++) 
+    for (int i = 0; i < (int)strlen(str); i++) 
 	if (str[i] == c) count++;
     return count;
 }
@@ -35,7 +35,7 @@ int check_list(char* str)
 
 char* string_uppercase(char* string)
 {
-    for (int i = 0; i < strlen(string); i++) 
+    for (int i = 0; i < (int)strlen(string); i++) 
 	string[i] = toupper(string[i]);
     return string;
 }
