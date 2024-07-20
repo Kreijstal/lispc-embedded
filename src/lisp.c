@@ -6,6 +6,7 @@
 #include "operators.h"
 #include "parser.h"
 #include "stdlib_lisp.h"
+#include "primitives.h"
 
 const char* type_names[] = {"INTEGER", "SYMBOL", "LIST", "PROCEDURE", "BINDING", "ERROR", "OPERATOR"};
 
@@ -209,11 +210,29 @@ Value* eval(Value* expression, List* environment)
     }
     return alloc_value(TYPE_ERROR, "Unknown expression type");
 }
+Value* primitive_hello(List* arguments __attribute__((unused))) {
+    printf("world\n");
+    return alloc_value(TYPE_SYMBOL, "NIL"); 
+}
+Value* primitive_add_two(List* arguments) {
+    if (arguments->length != 1) {
+        return alloc_value(TYPE_ERROR, "ADD_TWO expects exactly one argument.");
+    }
 
+    Value* arg = arguments->first->value;
+    if (arg->type != TYPE_INTEGER) {
+        return alloc_value(TYPE_ERROR, "ADD_TWO expects an integer argument.");
+    }
+
+    int* result = allocate_integer(*(int*)arg->data + 2);
+    return alloc_value(TYPE_INTEGER, result);
+}
 void test_repl()
 {
     char expression[8000];
     List* env = setup_environment();
+    append_primitive_procedure(env, "HELLO", 0, &primitive_hello);
+    append_primitive_procedure(env, "ADD_TWO", 0, &primitive_add_two);
     Value* result;
 
     // Load the standard library Lisp code from stdlib_lisp.h
@@ -237,3 +256,4 @@ int main()
     test_repl();
     return 0;	
 }
+

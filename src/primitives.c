@@ -12,7 +12,6 @@
 
 /* Internal declarations */
 Procedure* alloc_primitive_procedure(Value* (*) (List*), int);
-void append_primtive_procedure(List*, char*, int num_args, Value* (*) (List*));
 Value* primitive_plus(List*);
 Value* primitive_eq(List*);
 Value* primitive_greater(List*);
