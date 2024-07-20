@@ -207,6 +207,7 @@ Value* eval(Value* expression, List* environment)
 	else 
 	    return alloc_value(TYPE_ERROR, "first element of list not operator or procedure");
     }
+    return alloc_value(TYPE_ERROR, "Unknown expression type");
 }
 
 void test_repl()
