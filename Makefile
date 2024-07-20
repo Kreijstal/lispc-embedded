@@ -4,8 +4,8 @@ LDFLAGS =
 SRC_DIR = src
 OBJ_DIR = obj
 BIN_DIR = bin
-LISP_FILE = stdlib.lisp
-HEADER_FILE = stdlib_lisp.h
+LISP_FILE = src/stdlib.lisp
+HEADER_FILE = src/stdlib_lisp.h
 
 SOURCES = $(wildcard $(SRC_DIR)/*.c)
 OBJECTS = $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SOURCES))

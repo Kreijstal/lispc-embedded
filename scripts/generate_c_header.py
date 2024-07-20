@@ -14,4 +14,4 @@ def generate_c_header(lisp_file, header_file):
         f.write('#endif // STDLIB_LISP_H\n')
 
 if __name__ == "__main__":
-    generate_c_header("stdlib.lisp", "stdlib_lisp.h")
+    generate_c_header("src/stdlib.lisp", "src/stdlib_lisp.h")
