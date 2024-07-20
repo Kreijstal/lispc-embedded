@@ -138,14 +138,28 @@ Value* primitive_greater(List* arguments)
 
 Value* primitive_lesseq(List* arguments)
 {
-    return (Value*)((intptr_t)primitive_less(arguments) == (intptr_t)alloc_value(TYPE_SYMBOL, "T") || 
-                    (intptr_t)primitive_eq(arguments) == (intptr_t)alloc_value(TYPE_SYMBOL, "T"));
+    Value* less_result = primitive_less(arguments);
+    Value* eq_result = primitive_eq(arguments);
+    if (less_result->type == TYPE_SYMBOL && strcmp((char*)less_result->data, "T") == 0) {
+        return alloc_value(TYPE_SYMBOL, "T");
+    }
+    if (eq_result->type == TYPE_SYMBOL && strcmp((char*)eq_result->data, "T") == 0) {
+        return alloc_value(TYPE_SYMBOL, "T");
+    }
+    return alloc_value(TYPE_SYMBOL, "NIL");
 }
 
 Value* primitive_greatereq(List* arguments)
 {
-    return (Value*)((intptr_t)primitive_greater(arguments) == (intptr_t)alloc_value(TYPE_SYMBOL, "T") || 
-                    (intptr_t)primitive_eq(arguments) == (intptr_t)alloc_value(TYPE_SYMBOL, "T"));
+    Value* greater_result = primitive_greater(arguments);
+    Value* eq_result = primitive_eq(arguments);
+    if (greater_result->type == TYPE_SYMBOL && strcmp((char*)greater_result->data, "T") == 0) {
+        return alloc_value(TYPE_SYMBOL, "T");
+    }
+    if (eq_result->type == TYPE_SYMBOL && strcmp((char*)eq_result->data, "T") == 0) {
+        return alloc_value(TYPE_SYMBOL, "T");
+    }
+    return alloc_value(TYPE_SYMBOL, "NIL");
 }
 
 Value* primitive_list(List* arguments)
