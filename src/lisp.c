@@ -43,7 +43,7 @@ int compare_values(Value* a, Value* b)
 	    }
 	    return 1;
 	}
-    return NULL; // Add this line to ensure a return value
+    return 0; // Add this line to ensure a return value
 	}
     return 0;
 }	
@@ -62,6 +62,7 @@ Value* environment_lookup(List* environment, char* name)
     strcpy(errorstring, "unbound variable ");
     strcpy(errorstring + strlen(errorstring), name);
     return alloc_value(TYPE_ERROR, errorstring);
+    return alloc_value(TYPE_ERROR, "Unknown expression type");
 }
 
 int* allocate_integer(int value)
