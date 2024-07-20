@@ -4,7 +4,7 @@
 #include "lisp.h"
 #include "list.h"
 #include "operators.h"
-void strip_spaces(char* string);
+#include "parser.h"
 
 const char* type_names[] = {"INTEGER", "SYMBOL", "LIST", "PROCEDURE", "BINDING", "ERROR", "OPERATOR"};
 
