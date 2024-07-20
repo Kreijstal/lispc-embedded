@@ -15,10 +15,10 @@ EXECUTABLE = $(BIN_DIR)/lisp_interpreter
 
 all: $(EXECUTABLE)
 
-$(EXECUTABLE): $(OBJECTS) $(HEADER_FILE) | $(BIN_DIR)
+$(EXECUTABLE): $(OBJECTS) | $(BIN_DIR)
 	$(CC) $(CFLAGS) -o $@ $(OBJECTS) $(LDFLAGS)
 
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR)
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(HEADER_FILE) | $(OBJ_DIR)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 $(HEADER_FILE): $(LISP_FILE)
