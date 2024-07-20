@@ -58,6 +58,7 @@ Value* environment_lookup(List* environment, char* name)
 	    return current_binding->value;
 	current = current->next;
     }
+    return alloc_value(TYPE_ERROR, "Unknown expression type");
     char* errorstring = (char*)malloc(sizeof(char) * (strlen(name) + 30));
     strcpy(errorstring, "unbound variable ");
     strcpy(errorstring + strlen(errorstring), name);
