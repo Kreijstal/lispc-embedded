@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "lisp.h"
+#include <stdint.h>
 #include "list.h"
 #include "primitives.h"
 
@@ -137,12 +138,14 @@ Value* primitive_greater(List* arguments)
 
 Value* primitive_lesseq(List* arguments)
 {
-    return (Value*)((intptr_t)primitive_less(arguments) || (intptr_t)primitive_eq(arguments));
+    return (Value*)((intptr_t)primitive_less(arguments) == (intptr_t)alloc_value(TYPE_SYMBOL, "T") || 
+                    (intptr_t)primitive_eq(arguments) == (intptr_t)alloc_value(TYPE_SYMBOL, "T"));
 }
 
 Value* primitive_greatereq(List* arguments)
 {
-    return (Value*)((intptr_t)primitive_greater(arguments) || (intptr_t)primitive_eq(arguments));
+    return (Value*)((intptr_t)primitive_greater(arguments) == (intptr_t)alloc_value(TYPE_SYMBOL, "T") || 
+                    (intptr_t)primitive_eq(arguments) == (intptr_t)alloc_value(TYPE_SYMBOL, "T"));
 }
 
 Value* primitive_list(List* arguments)
