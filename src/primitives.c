@@ -139,28 +139,12 @@ Value* primitive_greater(List* arguments)
 
 Value* primitive_lesseq(List* arguments)
 {
-    Value* less_result = primitive_less(arguments);
-    Value* eq_result = primitive_eq(arguments);
-    if (less_result->type == TYPE_SYMBOL && strcmp((char*)less_result->data, "T") == 0) {
-        return alloc_value(TYPE_SYMBOL, "T");
-    }
-    if (eq_result->type == TYPE_SYMBOL && strcmp((char*)eq_result->data, "T") == 0) {
-        return alloc_value(TYPE_SYMBOL, "T");
-    }
-    return alloc_value(TYPE_SYMBOL, "NIL");
+  return primitive_less(arguments) || primitive_eq(arguments);
 }
 
 Value* primitive_greatereq(List* arguments)
 {
-    Value* greater_result = primitive_greater(arguments);
-    Value* eq_result = primitive_eq(arguments);
-    if (greater_result->type == TYPE_SYMBOL && strcmp((char*)greater_result->data, "T") == 0) {
-        return alloc_value(TYPE_SYMBOL, "T");
-    }
-    if (eq_result->type == TYPE_SYMBOL && strcmp((char*)eq_result->data, "T") == 0) {
-        return alloc_value(TYPE_SYMBOL, "T");
-    }
-    return alloc_value(TYPE_SYMBOL, "NIL");
+   return primitive_greater(arguments) || primitive_eq(arguments); 
 }
 
 Value* primitive_list(List* arguments)
