@@ -5,6 +5,7 @@
 #include "list.h"
 #include "operators.h"
 #include "parser.h"
+#include "stdlib_lisp.h"
 
 const char* type_names[] = {"INTEGER", "SYMBOL", "LIST", "PROCEDURE", "BINDING", "ERROR", "OPERATOR"};
 
@@ -211,12 +212,8 @@ void test_repl()
     List* env = setup_environment();
     Value* result;
 
-    FILE* file = fopen("stdlib.lisp", "r");
-    fseek(file, 0, SEEK_END);
-    int size = ftell(file);
-    rewind(file);
-    fread(expression, 1, size, file);
-    expression[size] = 0;
+    // Load the standard library Lisp code from stdlib_lisp.h
+    strcpy(expression, stdlib_lisp);
     strip_spaces(expression);
     result = eval(parse_string(expression), env);
     
