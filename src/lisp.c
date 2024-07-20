@@ -43,6 +43,7 @@ int compare_values(Value* a, Value* b)
 	    }
 	    return 1;
 	}
+    return NULL; // Add this line to ensure a return value
 	}
     return 0;
 }	
