@@ -4,6 +4,7 @@
 #include <stdint.h>
 #include "list.h"
 #include "primitives.h"
+#include <string.h>
 
 #define OPERATION_PLUS 0
 #define OPERATION_MINUS 1
