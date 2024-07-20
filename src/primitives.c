@@ -157,7 +157,7 @@ Value* primitive_first(List* arguments)
     Value* arg = arguments->first->value;
 
     if (arg->type != TYPE_LIST)
-	alloc_value(TYPE_ERROR, "expects list");
+	return alloc_value(TYPE_ERROR, "expects list");
     else {
 	List* lst = (List*)arg->data;
 	if (lst->length == 0)
@@ -172,7 +172,7 @@ Value* primitive_rest(List* arguments)
     Value* arg = arguments->first->value;
 
     if (arg->type != TYPE_LIST)
-	alloc_value(TYPE_ERROR, "expects list");
+	return alloc_value(TYPE_ERROR, "expects list");
     else {
 	List* lst = (List*)arg->data;
 	if (lst->length < 1)

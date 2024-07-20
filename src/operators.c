@@ -63,7 +63,7 @@ Value* operator_if(List* arguments, List* environment)
     return eval(true_exp, environment);
 }
 
-Value* operator_quote(List* arguments, List* environment)
+Value* operator_quote(List* arguments, List* environment __attribute__((unused)))
 {
     return arguments->first->value;
 }
@@ -73,7 +73,7 @@ Value* operator_define(List* arguments, List* environment)
     Value* symbol = arguments->first->value;
     Value* value = arguments->first->next->value;
 
-    if (!symbol->type == TYPE_SYMBOL)
+    if (!(symbol->type == TYPE_SYMBOL))
 	return alloc_value(TYPE_ERROR, "DEFINE: variable name must be symbolic");
     
     list_append(environment, alloc_value(TYPE_BINDING, alloc_binding(symbol, value)));
@@ -197,7 +197,7 @@ Value* operator_cond(List* arguments, List* environment)
     return result;
 }
 
-Value* operator_eval(List* arguments, List* environment)
+Value* operator_eval(List* arguments, List* environment __attribute__((unused)))
 {
     return arguments->first->value;	
 }
